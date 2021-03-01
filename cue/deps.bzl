@@ -2,6 +2,23 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 _cue_runtimes = {
+    "0.3.0-beta.5": [
+        {
+            "os": "Linux",
+            "arch": "x86_64",
+            "sha256": "f1ccf4fae2079ecb825e7bf9694f053088a3651c92c1399fdaa0a8d8104f47d5",
+        },
+        {
+            "os": "Darwin",
+            "arch": "x86_64",
+            "sha256": "aef41df71c1507795d090f809afb4cdcbef6365e0bcbe4f7779d0d54afaec39c",
+        },
+        {
+            "os": "Windows",
+            "arch": "x86_64",
+            "sha256": "5063c681e5b097c30d5b482975cbf4ef9e73251738bf2690049c616ee596d798",
+        },
+    ],
     "0.3.0-beta.3": [
         {
             "os": "Linux",
