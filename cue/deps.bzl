@@ -1,29 +1,25 @@
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-# https://github.com/cuelang/cue/releases/download/v0.3.0-beta.7/cue_v0.3.0-beta.7_linux_amd64.tar.gz
+# https://github.com/cuelang/cue/releases/download/v0.4.0/cue_v0.4.0_linux_amd64.tar.gz
 
 _cue_runtimes = {
-    "0.3.0-beta.7": [
-        {
-            "os": "linux",
-            "arch": "amd64",
-            "sha256": "936a1ad74ed2eb08568c72a449e644829eb20f2aca73d2fa56ee7492d37009e5",
-        },
-        {
-            "os": "darwin",
-            "arch": "amd64",
-            "sha256": "309c2f8bc7345c450753821f01231dddf9209d4dfea0c8b32557126277644ba9",
-        },
-        {
-            "os": "windows",
-            "arch": "amd64",
-            "sha256": "95edc104f86059c67783bb288a041bc9f3ce537644142032bd49bc297d1fc978",
-        },
-    ],
+    "0.4.0": [{
+        "os": "linux",
+        "arch": "amd64",
+        "sha256": "a118177d9c605b4fc1a61c15a90fddf57a661136c868dbcaa9d2406c95897949",
+    }, {
+        "os": "darwin",
+        "arch": "amd64",
+        "sha256": "24717a72b067a4d8f4243b51832f4a627eaa7e32abc4b9117b0af9aa63ae0332",
+    }, {
+        "os": "windows",
+        "arch": "amd64",
+        "sha256": "13a2db61e78473db0fab0530e8ebf70aa37ed6fb88ee14df240880ec7e70c0f1",
+    }],
 }
 
-def cue_register_toolchains(version = "0.3.0-beta.7"):
+def cue_register_toolchains(version = "0.4.0"):
     for platform in _cue_runtimes[version]:
         suffix = "tar.gz"
         if platform["os"] == "windows":
