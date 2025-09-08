@@ -48,11 +48,7 @@ ${CUE} def -o ${OUT}
         use_default_shell_env = True,
     )
 
-    return [DefaultInfo(
-        files = depset([def_out]),
-        runfiles = depset([tmp]),
-    )]
-
+    return def_out
 
 def _cue_library_impl(ctx):
     """cue_library validates a cue package, bundles up the files into a
