@@ -20,10 +20,13 @@ def _cue_def(ctx):
     merged = _pkg_merge(ctx, srcs_zip)
     def_out = ctx.actions.declare_file(ctx.label.name + "~def.cue")
 
+    tmp = ctx.actions.declare_directory("TMP_" + ctx.label.name)
+
     args = ctx.actions.args()
     args.add(ctx.executable._cue.path)
     args.add(merged.path)
     args.add(def_out.path)
+    args.add(tmp.path)
 
     ctx.actions.run_shell(
         mnemonic = "CueDef",
@@ -35,6 +38,7 @@ set -euo pipefail
 CUE=$1; shift
 PKGZIP=$1; shift
 OUT=$1; shift
+CUE_CACHE_DIR=$1; shift
 
 unzip -q ${PKGZIP}
 ${CUE} def -o ${OUT}
@@ -44,7 +48,11 @@ ${CUE} def -o ${OUT}
         use_default_shell_env = True,
     )
 
-    return def_out
+    return [DefaultInfo(
+        files = depset([def_out]),
+        runfiles = depset([tmp]),
+    )]
+
 
 def _cue_library_impl(ctx):
     """cue_library validates a cue package, bundles up the files into a
