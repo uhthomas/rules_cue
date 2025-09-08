@@ -38,7 +38,7 @@ set -euo pipefail
 CUE=$1; shift
 PKGZIP=$1; shift
 OUT=$1; shift
-CUE_CACHE_DIR=$1; shift
+XDG_CACHE_HOME=$1; shift
 
 unzip -q ${PKGZIP}
 ${CUE} def -o ${OUT}
