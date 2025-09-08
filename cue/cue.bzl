@@ -44,7 +44,7 @@ unzip -q ${PKGZIP}
 ${CUE} def -o ${OUT}
 """,
         inputs = [merged],
-        outputs = [def_out],
+        outputs = [def_out, tmp],
         use_default_shell_env = True,
     )
 
