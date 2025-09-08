@@ -38,10 +38,10 @@ set -euo pipefail
 CUE=$1; shift
 PKGZIP=$1; shift
 OUT=$1; shift
-XDG_CACHE_HOME=$1; shift
+TMPDIR=$1; shift
 
 unzip -q ${PKGZIP}
-${CUE} def -o ${OUT}
+CUE_CACHE_DIR=${TMPDIR} ${CUE} def -o ${OUT}
 """,
         inputs = [merged],
         outputs = [def_out, tmp],
